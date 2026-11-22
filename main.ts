@@ -880,8 +880,8 @@ function run(args: string[]): { code: number; out: string[] } {
     const nowNew = tree.now.get(m.new);
     if (wasOld !== null && wasNew === null && nowOld === null && nowNew !== null) {
       rows.push({ key: m.new, line: `R ${m.old} -> ${m.new}` });
-      suppressed.add(`D ${m.old}`);
-      suppressed.add(`A ${m.new}`);
+      suppressed.add(`D ${m.old}`);
+      suppressed.add(`A ${m.new}`);
     }
   }
   const changed: { p: string; now: string | null }[] = [];
@@ -891,7 +891,7 @@ function run(args: string[]): { code: number; out: string[] } {
     if (was === now) continue;
     const tag = was === null ? 'A' : now === null ? 'D' : 'M';
     changed.push({ p, now });
-    if (suppressed.has(`${tag} ${p}`)) continue;
+    if (suppressed.has(`${tag} ${p}`)) continue;
     rows.push({ key: p, line: `${tag} ${p}` });
   }
   rows.sort((a, b) => Buffer.compare(Buffer.from(a.key), Buffer.from(b.key)));
